@@ -81,7 +81,7 @@ function loadComments(context: vscode.ExtensionContext, commentController: vscod
                 const range = new vscode.Range(threadData.line, 0, threadData.line, 0);
                 
                 const thread = commentController.createCommentThread(uri, range, []);
-                
+
                 thread.comments = threadData.comments.map(commentData => 
                     new NoteComment(
                         commentData.body,
@@ -106,6 +106,12 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(commentController);
 
 	loadComments(context, commentController);
+
+    // Listen for workspace folder changes and reload comments
+    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => {
+        loadComments(context, commentController);
+    }));
+
 
 	// A `CommentingRangeProvider` controls where gutter decorations that allow adding comments are shown
 	commentController.commentingRangeProvider = {
