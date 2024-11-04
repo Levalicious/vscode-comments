@@ -164,7 +164,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/glob": "^7.1.1",
+		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
         "@types/node": "^22",
 		"@types/vscode": "^1.73.0",
