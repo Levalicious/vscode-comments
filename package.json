@@ -2,7 +2,7 @@
 	"name": "codium-comment",
 	"displayName": "Codium Comment",
 	"description": "Commenting for Codium",
-	"version": "0.0.4",
+	"version": "0.0.0",
 	"publisher": "Levalicious",
 	"private": false,
 	"license": "MIT",
