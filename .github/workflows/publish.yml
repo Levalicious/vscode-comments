@@ -43,4 +43,4 @@ jobs:
         gh release create "v${VERSION}" \
           --title "Release v${VERSION}" \
           --notes "Release v${VERSION}" \
-          "${VSIX_FILE}#
+          "$VSIX_FILE"
