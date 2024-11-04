@@ -1,0 +1,28 @@
+# .github/workflows/publish.yml
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'
+    - name: Install dependencies
+      run: yarn install
+    - name: Build
+      run: yarn build
+    - name: Lint
+      run: yarn lint
+    - name: Test
+      run: xvfb-run -a yarn test
+    - name: Publish
+      run: yarn publish

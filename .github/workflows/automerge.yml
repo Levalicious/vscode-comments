@@ -1,0 +1,21 @@
+name: Automerge
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Git
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+    - name: Create Pull Request
+      run: gh pr create -B dev -H main --title 'Automerge' --body 'Merge changes to master back to dev'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

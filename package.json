@@ -1,0 +1,180 @@
+{
+	"name": "codium-comment",
+	"displayName": "Codium Comment",
+	"description": "Commenting for Codium",
+	"version": "0.0.0",
+	"publisher": "Levalicious",
+	"private": true,
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Levalicious/vscode-comments"
+	},
+	"engines": {
+		"vscode": "^1.73.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "mywiki.createNote",
+				"title": "Create Note",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.replyNote",
+				"title": "Reply",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.editNote",
+				"title": "Edit",
+				"icon": {
+					"dark": "resources/edit_inverse.svg",
+					"light": "resources/edit.svg"
+				}
+			},
+			{
+				"command": "mywiki.deleteNote",
+				"title": "Delete",
+				"icon": {
+					"dark": "resources/close_inverse.svg",
+					"light": "resources/close.svg"
+				}
+			},
+			{
+				"command": "mywiki.deleteNoteComment",
+				"title": "Delete",
+				"icon": {
+					"dark": "resources/close_inverse.svg",
+					"light": "resources/close.svg"
+				}
+			},
+			{
+				"command": "mywiki.saveNote",
+				"title": "Save"
+			},
+			{
+				"command": "mywiki.cancelsaveNote",
+				"title": "Cancel"
+			},
+			{
+				"command": "mywiki.startDraft",
+				"title": "Start Draft",
+				"enablement": "!commentIsEmpty"
+			},
+			{
+				"command": "mywiki.finishDraft",
+				"title": "Finish Draft"
+			},
+			{
+				"command": "mywiki.dispose",
+				"title": "Remove All Notes"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "mywiki.createNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.replyNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.deleteNote",
+					"when": "false"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"when": "false"
+				}
+			],
+			"comments/commentThread/title": [
+				{
+					"command": "mywiki.deleteNote",
+					"group": "navigation",
+					"when": "commentController == codium-comment && !commentThreadIsEmpty"
+				}
+			],
+			"comments/commentThread/context": [
+				{
+					"command": "mywiki.createNote",
+					"group": "inline",
+					"when": "commentController == codium-comment && commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.replyNote",
+					"group": "inline",
+					"when": "commentController == codium-comment && !commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.startDraft",
+					"group": "inline",
+					"when": "commentController == codium-comment && commentThreadIsEmpty"
+				},
+				{
+					"command": "mywiki.finishDraft",
+					"group": "inline",
+					"when": "commentController == codium-comment && commentThread == draft"
+				}
+			],
+			"comments/comment/title": [
+				{
+					"command": "mywiki.editNote",
+					"group": "group@1",
+					"when": "commentController == codium-comment"
+				},
+				{
+					"command": "mywiki.deleteNoteComment",
+					"group": "group@2",
+					"when": "commentController == codium-comment && comment == canDelete"
+				}
+			],
+			"comments/comment/context": [
+				{
+					"command": "mywiki.cancelsaveNote",
+					"group": "inline@1",
+					"when": "commentController == codium-comment"
+				},
+				{
+					"command": "mywiki.saveNote",
+					"group": "inline@2",
+					"when": "commentController == codium-comment"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"build": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint",
+        "package": "vsce package",
+        "publish": "vsce publish",
+        "test": "node ./out/test/runTest.js",
+        "clean": "git clean -xdf"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.13.0",
+		"@stylistic/eslint-plugin": "^2.9.0",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^10.0.1",
+        "@types/node": "^20",
+		"@types/vscode": "^1.73.0",
+		"@vscode/test-electron": "^2.3.9",
+        "eslint": "^9.13.0",
+		"glob": "^7.1.4",
+		"mocha": "^10.2.0",
+        "source-map-support": "^0.5.12",
+        "typescript": "^5.6.2",
+		"typescript-eslint": "^8.11.0",
+		"@vscode/vsce": "^3.2.1"
+	}
+}
