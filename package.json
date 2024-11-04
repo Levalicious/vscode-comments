@@ -2,7 +2,7 @@
 	"name": "codium-comment",
 	"displayName": "Codium Comment",
 	"description": "Commenting for Codium",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "Levalicious",
 	"private": true,
 	"license": "MIT",
@@ -156,7 +156,7 @@
 		"build": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"lint": "eslint",
-        "package": "vsce package",
+        "package": "vsce package --allow-star-activation",
         "publish": "vsce publish",
         "test": "node ./out/test/runTest.js",
         "clean": "git clean -xdf"

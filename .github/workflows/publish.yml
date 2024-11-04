@@ -4,7 +4,7 @@ name: Publish
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   publish:
@@ -24,5 +24,7 @@ jobs:
       run: yarn lint
     - name: Test
       run: xvfb-run -a yarn test
+    - name: Package
+      run: yarn package
     - name: Publish
       run: yarn publish
