@@ -1,10 +1,12 @@
-# .github/workflows/publish.yml
 name: Publish
 
 on:
   push:
     branches:
       - master
+
+permissions:
+  contents: write
 
 jobs:
   publish:
@@ -26,5 +28,19 @@ jobs:
       run: xvfb-run -a yarn test
     - name: Package
       run: yarn package
-    - name: Publish
-      run: yarn vspublish
+    - name: Get version
+      id: get_version
+      run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+    - name: Create release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VERSION: ${{ steps.get_version.outputs.version }}
+      run: |
+        # Find the .vsix file
+        VSIX_FILE=$(find . -name "*.vsix" -type f)
+        
+        # Create release
+        gh release create "v${VERSION}" \
+          --title "Release v${VERSION}" \
+          --notes "Release v${VERSION}" \
+          "${VSIX_FILE}#
