@@ -27,4 +27,4 @@ jobs:
     - name: Package
       run: yarn package
     - name: Publish
-      run: yarn publish
+      run: yarn vspublish
