@@ -38,7 +38,7 @@ jobs:
       run: echo "vsix_file=$(find . -name '*.vsix' -type f)" >> $GITHUB_OUTPUT
     - name: Create artifact
       if: startsWith(github.ref, 'refs/heads/hotfix/') || startsWith(github.ref, 'refs/heads/release/')
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: v${{ steps.get_version.outputs.version }}-${{ github.run_number }}
         path: ${{ steps.find_vsix.outputs.vsix_file }} needed
