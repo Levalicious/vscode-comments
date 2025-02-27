@@ -41,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: v${{ steps.get_version.outputs.version }}-${{ github.run_number }}
-        path: ${{ steps.find_vsix.outputs.vsix_file }} needed
+        path: ${{ steps.find_vsix.outputs.vsix_file }}
     - name: Create release
       if: github.ref == 'refs/heads/master'
       env:
