@@ -2,7 +2,7 @@
 	"name": "codium-comment",
 	"displayName": "Codium Comment",
 	"description": "Commenting for Codium",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "Levalicious",
 	"private": false,
 	"license": "MIT",
@@ -163,7 +163,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.19.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
+		"@stylistic/eslint-plugin": "^4.1.0",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
         "@types/node": "^22",
@@ -171,10 +171,10 @@
 		"@vscode/test-electron": "^2.3.9",
         "eslint": "^9.21.0",
 		"glob": "^11.0.0",
-		"mocha": "^10.2.0",
+		"mocha": "^11.1.0",
         "source-map-support": "^0.5.12",
         "typescript": "^5.7.3",
-		"typescript-eslint": "^8.22.0",
-		"@vscode/vsce": "^3.2.1"
+		"typescript-eslint": "^8.25.0",
+		"@vscode/vsce": "^3.2.2"
 	}
 }
