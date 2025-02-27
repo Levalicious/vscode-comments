@@ -36,7 +36,7 @@ async function saveThread(context: vscode.ExtensionContext, thread: vscode.Comme
     
     const serializedThread: SerializedThread = {
         uri: thread.uri.toString(),
-        line: thread.range.start.line,
+        line: (thread.range == undefined) ? 0 : thread.range.start.line,
         comments: thread.comments.map(comment => ({
             body: (comment.body as string),
             mode: (comment as NoteComment).mode,
@@ -64,7 +64,7 @@ async function deleteThread(context: vscode.ExtensionContext, thread: vscode.Com
     const savedThreads = context.workspaceState.get<SerializedThread[]>('savedComments', []);
     
     const filteredThreads = savedThreads.filter(t => 
-        !(t.uri === thread.uri.toString() && t.line === thread.range.start.line)
+        !(t.uri === thread.uri.toString() && t.line === ((thread.range == undefined) ? 0 : thread.range.start.line))
     );
     
     await context.workspaceState.update('savedComments', filteredThreads);

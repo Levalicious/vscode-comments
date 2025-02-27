@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+      - hotfix/*
+      - release/*
 
 permissions:
   contents: write
@@ -31,16 +33,23 @@ jobs:
     - name: Get version
       id: get_version
       run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+    - name: Find .vsix file
+      id: find_vsix
+      run: echo "vsix_file=$(find . -name '*.vsix' -type f)" >> $GITHUB_OUTPUT
+    - name: Create artifact
+      if: startsWith(github.ref, 'refs/heads/hotfix/') || startsWith(github.ref, 'refs/heads/release/')
+      uses: actions/upload-artifact@v4
+      with:
+        name: v${{ steps.get_version.outputs.version }}-${{ github.run_number }}
+        path: ${{ steps.find_vsix.outputs.vsix_file }}
     - name: Create release
+      if: github.ref == 'refs/heads/master'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VERSION: ${{ steps.get_version.outputs.version }}
+        VSIX_FILE: ${{ steps.find_vsix.outputs.vsix_file }}
       run: |
-        # Find the .vsix file
-        VSIX_FILE=$(find . -name "*.vsix" -type f)
-        
-        # Create release
         gh release create "v${VERSION}" \
-          --title "Release v${VERSION}" \
+          --title "v${VERSION}" \
           --notes "Release v${VERSION}" \
           "$VSIX_FILE"

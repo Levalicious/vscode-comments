@@ -2,7 +2,7 @@
 	"name": "codium-comment",
 	"displayName": "Codium Comment",
 	"description": "Commenting for Codium",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "Levalicious",
 	"private": false,
 	"license": "MIT",
@@ -11,7 +11,7 @@
 		"url": "https://github.com/Levalicious/vscode-comments"
 	},
 	"engines": {
-		"vscode": "^1.73.0"
+		"vscode": "^1.97.0"
 	},
 	"categories": [
 		"Other"
@@ -165,12 +165,12 @@
 		"@eslint/js": "^9.19.0",
 		"@stylistic/eslint-plugin": "^4.1.0",
 		"@types/glob": "^8.1.0",
-		"@types/mocha": "^10.0.1",
+		"@types/mocha": "^10.0.10",
         "@types/node": "^22",
-		"@types/vscode": "^1.73.0",
+		"@types/vscode": "^1.97.0",
 		"@vscode/test-electron": "^2.3.9",
         "eslint": "^9.21.0",
-		"glob": "^11.0.0",
+		"glob": "^11.0.1",
 		"mocha": "^11.1.0",
         "source-map-support": "^0.5.12",
         "typescript": "^5.7.3",
