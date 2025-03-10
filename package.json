@@ -169,7 +169,7 @@
         "@types/node": "^22",
 		"@types/vscode": "^1.97.0",
 		"@vscode/test-electron": "^2.3.9",
-        "eslint": "^9.21.0",
+        "eslint": "^9.22.0",
 		"glob": "^11.0.1",
 		"mocha": "^11.1.0",
         "source-map-support": "^0.5.12",
